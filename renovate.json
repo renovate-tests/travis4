@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "config:js-lib",
+    ":prConcurrentLimit10",
+    ":prHourlyLimitNone",
+    ":semanticCommits"
+  ],
+  "ignorePresets": [
+    ":maintainLockFilesDisabled",
+    ":prConcurrentLimit20",
+    ":prHourlyLimit2"
+  ],
+  "enabledManagers": ["npm","travis"],
+  "rangeStrategy": "bump",
+  "supportPolicy": [
+    "lts",
+    "current"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "semanticCommitType": "fix",
+    "requiredStatusChecks": [],
+    "extends": ["schedule:monthly"]
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "assignees": ["@frbuceta"],
+    "labels": ["security"]
+  }
+}
