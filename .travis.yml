@@ -1,0 +1,21 @@
+language: "node_js"
+node_js:
+  - "10"
+  - "12"
+  - "12"
+branches:
+  only:
+    - master
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: npx semantic-release
+script:
+  - npm test
+after_success:
+  - npm i coveralls -D
+  - node node_modules/.bin/jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
